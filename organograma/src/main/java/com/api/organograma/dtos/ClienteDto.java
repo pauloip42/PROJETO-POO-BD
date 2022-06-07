@@ -1,12 +1,26 @@
 package com.api.organograma.dtos;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class ClienteDto {
 
+    @NotBlank
     private String nomeEmpresa;
+
+    @NotBlank
     private String responsavel;
-    private int cpnj;
-    private int telefone;
+
+    @NotBlank
+    @Size(max=12)
+    private String telefone;
+
+    @NotBlank
+    @Size(max=30)
     private String email;
+
+    @NotBlank
+    @Size(max=14)
+    private String cnpj;
 
     public String getResponsavel() {
         return responsavel;
@@ -24,19 +38,11 @@ public class ClienteDto {
         this.nomeEmpresa = nomeEmpresa;
     }
 
-    public int getCpnj() {
-        return cpnj;
-    }
-
-    public void setCpnj(int cpnj) {
-        this.cpnj = cpnj;
-    }
-
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -48,6 +54,11 @@ public class ClienteDto {
         this.email = email;
     }
 
+    public String getCnpj() {
+        return cnpj;
+    }
 
-
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
 }

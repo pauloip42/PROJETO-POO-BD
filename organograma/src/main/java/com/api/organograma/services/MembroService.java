@@ -1,6 +1,7 @@
 package com.api.organograma.services;
 
 import com.api.organograma.models.MembroModel;
+import com.api.organograma.models.ProjetoModel;
 import com.api.organograma.repositories.MembroRepository;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,9 @@ public class MembroService {
     @Transactional // ANOTATION Para métodos construtivos ou destrutivos
     public void delete(MembroModel membroModel) {
         membroRepository.delete(membroModel);
+    }
+
+    public void addMembro(MembroModel membro, ProjetoModel projeto) {
+        projeto.addMembro(membro);
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -23,10 +24,12 @@ import java.util.Optional;
 public class ProjetoController {
     final ProjetoService projetoService;
     final ClienteService clienteService;
+    final MembroService membroService;
 
-    public ProjetoController(ProjetoService projetoService, ClienteService clienteService) {
+    public ProjetoController(ProjetoService projetoService, ClienteService clienteService, MembroService membroService) {
         this.projetoService = projetoService;
         this.clienteService = clienteService;
+        this.membroService = membroService;
     }
 
     @GetMapping // GET ALL MEMBERS (READ)
@@ -37,6 +40,7 @@ public class ProjetoController {
     @PostMapping // CREATE
     public ResponseEntity<Object> saveProject(@RequestBody @Valid ProjetoDto projetoDto){
         Optional<ClienteModel> clienteModelOptional = clienteService.findById(projetoDto.getCliente());
+        Optional<MembroModel> membroModelOptional = membroService.findById(projetoDto.getMembro());
 
         if(projetoService.existsByNome(projetoDto.getNome())){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Nome já está cadastrado");
@@ -46,19 +50,29 @@ public class ProjetoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente Inexistente");
         }
 
+        if(membroModelOptional.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Membro Inexistente");
+        }
+
+        if(projetoService.existsByIdAndMember(projetoDto.getId(), membroModelOptional.get())){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Membro já cadastrado no projeto");
+        }
+
         var projetoModel = new ProjetoModel();
         var clienteModel = new ClienteModel();
+        var membroModel = new MembroModel();
+
         BeanUtils.copyProperties(projetoDto, projetoModel);
 
         clienteModel = clienteModelOptional.get();
 
         if(clienteModel.getProjeto() != null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Esse cliente já tem um projeto");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Esse cliente já tem um projeto");
         }
 
         projetoModel.setCliente(clienteModel);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(projetoService.save(projetoModel));
+        return ResponseEntity.status(HttpStatus.CREATED).body(projetoService.save(projetoModel, membroModelOptional.get()));
     }
 
     @DeleteMapping("{id}") // DELETE Project

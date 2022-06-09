@@ -5,12 +5,16 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Getter
 @Setter
 public class ProjetoDto {
     @NotNull
     private Integer cliente;
+
+    @NotNull
+    private Integer membro;
 
     @NotBlank
     private String nome;
@@ -20,4 +24,6 @@ public class ProjetoDto {
 
     @NotBlank
     private String preco;
+
+    private Integer id;
 }

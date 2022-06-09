@@ -1,10 +1,13 @@
 package com.api.organograma.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,9 +26,13 @@ public class MembroModel implements Serializable {
     @Column(nullable = false, unique = true, length = 30)
     private String email;
 
-    @Column(nullable = false, unique = true, length = 3)
+    @Column(nullable = false, length = 3)
     private String curso;
 
     @Column(nullable = false, length = 10)
     private String cargo;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "membro")
+    private Set<ProjetoModel> projetos = new HashSet<>();
 }

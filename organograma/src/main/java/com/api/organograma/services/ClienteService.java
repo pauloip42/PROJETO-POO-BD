@@ -28,9 +28,9 @@ public class ClienteService {
         return clienteRepository.findById(id);
     }
 
-    // LISTA CLIENTE
+    // LISTA CLIENTES
     public List<ClienteModel> findAll() {
-        return clienteRepository.findAll();
+        return (List<ClienteModel>) clienteRepository.findAll();
     }
 
     // CRIA NOVO CLIENTE

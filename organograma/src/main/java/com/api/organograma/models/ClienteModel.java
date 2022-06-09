@@ -1,8 +1,13 @@
 package com.api.organograma.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "CLIENTE")
 public class ClienteModel implements Serializable {
@@ -27,52 +32,6 @@ public class ClienteModel implements Serializable {
     @Column(nullable = false, unique = true, length = 14)
     private String cnpj;
 
-    // RESPONSAVEL
-    public String getResponsavel() {
-        return responsavel;
-    }
-    public void setResponsavel(String responsavel) {
-        this.responsavel = responsavel;
-    }
-
-    // NOME DA EMPRESA
-    public String getNomeEmpresa() {
-        return nomeEmpresa;
-    }
-    public void setNomeEmpresa(String nomeEmpresa) {
-        this.nomeEmpresa = nomeEmpresa;
-    }
-
-    // EMAIL DO CLIENTE
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    // TELEFONE DA EMPRESA
-    public String getTelefone() {
-        return telefone;
-    }
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    // ID
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
+    @OneToOne(mappedBy = "cliente")
+    private ProjetoModel projeto;
 }

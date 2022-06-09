@@ -27,11 +27,11 @@ public class MembroService {
     }
 
     public List<MembroModel> findAll() {
-        return membroRepository.findAll();
+        return (List<MembroModel>) membroRepository.findAll();
     }
 
     public Optional<MembroModel> findById(Integer id) {
-        return membroRepository.findById(id);
+        return membroRepository.findById(Math.toIntExact(id));
     }
 
     @Transactional // ANOTATION Para métodos construtivos ou destrutivos

@@ -1,42 +1,23 @@
 package com.api.organograma.dtos;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+@Getter
+@Setter
 public class ProjetoDto {
+    @NotNull
+    private Integer cliente;
 
+    @NotBlank
     private String nome;
-    private int prazo;
-    private double preco;
-    private String area;
 
-    public String getNome() {
-        return nome;
-    }
+    @NotBlank
+    private String status;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getPrazo() {
-        return prazo;
-    }
-
-    public void setPrazo(int prazo) {
-        this.prazo = prazo;
-    }
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
+    @NotBlank
+    private String preco;
 }

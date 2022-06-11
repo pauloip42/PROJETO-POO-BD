@@ -1,10 +1,11 @@
 package com.api.organograma.controllers;
 
-import com.api.organograma.dtos.MembroDto;
 import com.api.organograma.dtos.ProjetoDto;
 import com.api.organograma.models.ClienteModel;
 import com.api.organograma.models.MembroModel;
 import com.api.organograma.models.ProjetoModel;
+import com.api.organograma.repositories.MembroRepository;
+import com.api.organograma.repositories.ProjetoRepository;
 import com.api.organograma.services.ClienteService;
 import com.api.organograma.services.MembroService;
 import com.api.organograma.services.ProjetoService;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -26,11 +26,17 @@ public class ProjetoController {
     final ClienteService clienteService;
     final MembroService membroService;
 
-    public ProjetoController(ProjetoService projetoService, ClienteService clienteService, MembroService membroService) {
+    final ProjetoRepository projetoRepository;
+    final MembroRepository membroRepository;
+
+    public ProjetoController(ProjetoService projetoService, ClienteService clienteService, MembroService membroService, ProjetoRepository projetoRepository, MembroRepository membroRepository) {
         this.projetoService = projetoService;
         this.clienteService = clienteService;
         this.membroService = membroService;
+        this.projetoRepository = projetoRepository;
+        this.membroRepository = membroRepository;
     }
+
 
     @GetMapping // GET ALL MEMBERS (READ)
     public ResponseEntity<List<ProjetoModel>> getAllProjects() {
@@ -73,6 +79,19 @@ public class ProjetoController {
         projetoModel.setCliente(clienteModel);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(projetoService.save(projetoModel, membroModelOptional.get()));
+    }
+
+    @PutMapping("/{id}/membros/{membroid}")
+    public ProjetoModel updateProjeto(
+            @PathVariable(value = "id") Integer id,
+            @PathVariable(value = "membroid") Integer membroId
+    ){
+        ProjetoModel projetoModel = projetoRepository.getById(id);
+        MembroModel membroModel = membroRepository.getById(membroId);
+
+        projetoModel.addMembro(membroModel);
+
+        return projetoService.saveUpdated(projetoModel);
     }
 
     @DeleteMapping("{id}") // DELETE Project

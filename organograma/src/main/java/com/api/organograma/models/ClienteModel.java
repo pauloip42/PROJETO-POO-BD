@@ -1,5 +1,6 @@
 package com.api.organograma.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,6 +33,7 @@ public class ClienteModel implements Serializable {
     @Column(nullable = false, unique = true, length = 14)
     private String cnpj;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "cliente")
     private ProjetoModel projeto;
 }

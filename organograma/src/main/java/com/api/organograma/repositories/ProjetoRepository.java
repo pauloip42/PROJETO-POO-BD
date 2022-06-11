@@ -7,7 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProjetoRepository extends CrudRepository<ProjetoModel, Integer> {
+public interface ProjetoRepository extends JpaRepository<ProjetoModel, Integer> {
     boolean existsByNome(String nome);
     boolean existsByIdAndMembro(Integer id, MembroModel membro);
+
 }

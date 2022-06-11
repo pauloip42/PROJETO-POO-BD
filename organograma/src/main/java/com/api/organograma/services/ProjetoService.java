@@ -26,7 +26,7 @@ public class ProjetoService {
     
     // Lista Projetos
     public List<ProjetoModel> findAll() {
-        return (List<ProjetoModel>) projetoRepository.findAll();
+        return projetoRepository.findAll();
     }
 
     // ENCONTRA Projeto POR ID
@@ -45,6 +45,11 @@ public class ProjetoService {
         membroService.addMembro(membroModel, projetoModel);
 
         return auxProjetoModel;
+    }
+
+    @Transactional
+    public ProjetoModel saveUpdated(ProjetoModel projetoModel){
+        return projetoRepository.save(projetoModel);
     }
 
     // DELETA PROJETO

@@ -1,6 +1,7 @@
 package com.api.organograma.services;
 
 import com.api.organograma.models.MembroModel;
+import com.api.organograma.models.NucleoModel;
 import com.api.organograma.models.ProjetoModel;
 import com.api.organograma.repositories.MembroRepository;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class MembroService {
     }
 
     public List<MembroModel> findAll() {
-        return (List<MembroModel>) membroRepository.findAll();
+        return membroRepository.findAll();
     }
 
     public Optional<MembroModel> findById(Integer id) {
@@ -42,5 +43,9 @@ public class MembroService {
 
     public void addMembro(MembroModel membro, ProjetoModel projeto) {
         projeto.addMembro(membro);
+    }
+
+    public MembroModel saveUpdated(MembroModel membroModel) {
+        return membroRepository.save(membroModel);
     }
 }

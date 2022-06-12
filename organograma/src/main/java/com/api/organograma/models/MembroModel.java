@@ -1,6 +1,7 @@
 package com.api.organograma.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +18,7 @@ public class MembroModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, unique = true, length = 30)
@@ -35,4 +36,17 @@ public class MembroModel implements Serializable {
     @JsonIgnore
     @ManyToMany(mappedBy = "membro")
     private Set<ProjetoModel> projetos = new HashSet<>();
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "nucleo_id", referencedColumnName = "id")
+    private NucleoModel nucleo;
+
+    public NucleoModel getNucleo() {
+        return nucleo;
+    }
+
+    public void registerNucleo(NucleoModel nucleo) {
+        this.nucleo = nucleo;
+    }
 }

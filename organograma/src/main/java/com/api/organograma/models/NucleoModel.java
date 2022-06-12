@@ -14,21 +14,28 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "NÚCLEO")
+@Table(name = "NUCLEO")
 public class NucleoModel implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, unique = true)
     private String nome;
 
-    @Column(nullable = false, length = 5)
+    @Column(nullable = false, length = 5, unique = true)
     private String sigla;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String area;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "nucleo")
+    private Set<MembroModel> membros = new HashSet<>();
+
+    public Set<MembroModel> getMembros() {
+        return membros;
+    }
 }

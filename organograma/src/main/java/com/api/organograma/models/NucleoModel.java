@@ -15,7 +15,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "NÚCLEO")
-public class ProjetoModel implements Serializable{
+public class NucleoModel implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id

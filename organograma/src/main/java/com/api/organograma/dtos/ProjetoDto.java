@@ -23,7 +23,7 @@ public class ProjetoDto {
     private String status;
 
     @NotBlank
-    private String preco;
+    private Double preco;
 
     private Integer id;
 }

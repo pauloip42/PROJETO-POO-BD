@@ -19,7 +19,7 @@ public class ProjetoModel implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, unique = true)
@@ -29,7 +29,7 @@ public class ProjetoModel implements Serializable{
     private String status;
 
     @Column(nullable = false)
-    private String preco;
+    private Double preco;
 
     @JsonIgnore
     @OneToOne

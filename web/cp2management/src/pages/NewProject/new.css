@@ -1,0 +1,34 @@
+form textarea {
+    resize: none;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    display: block;
+}
+
+form select {
+    margin-bottom: 15px;
+    margin-top: 5px;
+    display: block;
+}
+
+.name {
+    height: 30px;
+    display: block;
+}
+
+.customer {
+    display: block;
+}
+
+form input[type="radio"]{
+    margin: 15px 0;
+}
+
+form input[type="radio"]:not(:first-child){
+    margin-left: 15px;
+}
+
+.status span{
+    padding-left: .5em;
+    font-size: 1.3em;
+}

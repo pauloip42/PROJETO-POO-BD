@@ -66,7 +66,6 @@ public class ProjetoController {
 
         var projetoModel = new ProjetoModel();
         var clienteModel = new ClienteModel();
-        var membroModel = new MembroModel();
 
         BeanUtils.copyProperties(projetoDto, projetoModel);
 
@@ -82,25 +81,40 @@ public class ProjetoController {
     }
 
     @PutMapping("/{id}/membros/{membroid}")
-    public ProjetoModel updateProjeto(
+    public ResponseEntity<String> updateProjeto(
             @PathVariable(value = "id") Integer id,
-            @PathVariable(value = "membroid") Integer membroId
+            @PathVariable(value = "membroid") Integer membroId,
+            @RequestBody @Valid String status
     ){
+        if(!projetoService.existsById(id)){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Projeto Inexistente");
+        }
+
+        if(!membroService.existsById(membroId)){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Membro Inexistente");
+        }
+
+        if(!projetoService.validateStatus(status)){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Status Inválido");
+        }
+
         ProjetoModel projetoModel = projetoRepository.getById(id);
         MembroModel membroModel = membroRepository.getById(membroId);
 
         projetoModel.addMembro(membroModel);
+        projetoModel.setStatus(status);
+        projetoService.saveUpdated(projetoModel);
 
-        return projetoService.saveUpdated(projetoModel);
+        return ResponseEntity.status(HttpStatus.OK).body("Projeto Atualizado\n" + projetoService.saveUpdated(projetoModel));
     }
 
     @DeleteMapping("{id}") // DELETE Project
     public ResponseEntity<Object> deleteProject(@PathVariable(value = "id") Integer id){
         Optional<ProjetoModel> projetoModelOptional = projetoService.findById(id);
         if (projetoModelOptional.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Membro Inexistente");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Projeto Inexistente");
         }
         projetoService.delete(projetoModelOptional.get());
-        return ResponseEntity.status(HttpStatus.OK).body("Membro Deletado com Sucesso");
+        return ResponseEntity.status(HttpStatus.OK).body(projetoModelOptional.get());
     }
 }

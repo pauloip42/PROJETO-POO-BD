@@ -3,7 +3,6 @@ package com.api.organograma.controllers;
 import com.api.organograma.dtos.MembroDto;
 import com.api.organograma.models.MembroModel;
 import com.api.organograma.models.NucleoModel;
-import com.api.organograma.models.ProjetoModel;
 import com.api.organograma.repositories.MembroRepository;
 import com.api.organograma.repositories.NucleoRepository;
 import com.api.organograma.services.MembroService;

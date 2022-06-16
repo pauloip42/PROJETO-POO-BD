@@ -27,6 +27,9 @@ public class MembroService {
     public boolean existsByNome(String nome) {
         return membroRepository.existsByNome(nome);
     }
+    public boolean existsById(Integer id){
+        return membroRepository.existsById(id);
+    }
 
     public List<MembroModel> findAll() {
         return membroRepository.findAll();

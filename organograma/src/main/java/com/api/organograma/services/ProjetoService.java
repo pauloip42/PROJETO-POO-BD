@@ -23,6 +23,10 @@ public class ProjetoService {
     public boolean existsByNome(String nome) {
         return projetoRepository.existsByNome(nome);
     }
+
+    public boolean existsById(Integer id){
+        return projetoRepository.existsById(id);
+    }
     
     // Lista Projetos
     public List<ProjetoModel> findAll() {
@@ -50,6 +54,10 @@ public class ProjetoService {
     @Transactional
     public ProjetoModel saveUpdated(ProjetoModel projetoModel){
         return projetoRepository.save(projetoModel);
+    }
+
+    public boolean validateStatus(String status){
+        return status.equals("Em Espera") || status.equals("Concluído") || status.equals("Em Progresso");
     }
 
     // DELETA PROJETO

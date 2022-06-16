@@ -1,17 +1,15 @@
 import '../Dashboard/dashboard.css';
 
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import Header from '../../components/Header';
 import Title from '../../components/Title';
-import { FiEdit2, FiMessageSquare, FiPlus, FiSearch } from 'react-icons/fi';
+import { FiEdit2, FiSearch } from 'react-icons/fi';
 import { DiCodeBadge } from "react-icons/di";
 
 import getData from '../../services/api/get';
 
 import { Link } from 'react-router-dom';
-
-import Modal from '../../components/Modal';
 
 
 export default function Customers(){
@@ -67,16 +65,7 @@ export default function Customers(){
               </tbody>
             </table>
           </>
-
-
       </div>
-
-      {/* {showPostModal && (
-        <Modal
-          conteudo={detail}
-          close={togglePostModal}
-        />
-      )} */}
     </div>
   )
 }

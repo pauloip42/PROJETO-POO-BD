@@ -16,9 +16,6 @@ export default function Routes(){
       <Route exact path="/clientes" component={Customers} />
       <Route exact path="/nucleos" component={Cores} />
       <Route exact path="/novo-projeto" component={NewProject} />
-      {/* <Route exact path="/projects" component={Profile} />
-      <Route exact path="/customers" component={Customers} />
-      <Route exact path="/members" component={New} /> */}
     </Switch>
   )
 }

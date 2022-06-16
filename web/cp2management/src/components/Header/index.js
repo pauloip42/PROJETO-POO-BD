@@ -2,7 +2,7 @@ import './header.css';
 import avatar from '../../assets/avatar.jpeg';
 
 import { Link } from 'react-router-dom';
-import { FiHome, FiUser, FiSettings } from "react-icons/fi";
+import {FiUser} from "react-icons/fi";
 import { DiCodeBadge } from "react-icons/di";
 import { AiOutlineTeam } from "react-icons/ai"
 

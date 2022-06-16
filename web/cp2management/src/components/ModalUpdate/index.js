@@ -1,8 +1,8 @@
 import './modal.css';
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FiCheck, FiX } from 'react-icons/fi';
 
-import {deleteProject, updateProject} from '../../services/api/project/project';
+import {updateProject} from '../../services/api/project/project';
 
 import { toast } from 'react-toastify';
 import getData from '../../services/api/get';
@@ -111,23 +111,6 @@ export default function ModalUpdate({conteudo, close}){
                     <FiCheck size={23} color="#FFF"/>
                     Atualizar Projeto
                     </button>
-
-                    {/* <div className='row'>
-                        <span>
-                            Status: <i 
-                            style={{color: '#FFF', backgroundColor: conteudo.status === 'Atendido' ? '#5cb85c' : '#999'}}>
-                            {conteudo.status}</i>
-                        </span>
-                    </div>
-
-                    {conteudo.complemento !== '' && (
-                        <>
-                            <h3>Complemento</h3>
-                            <p>
-                                {conteudo.complemento}
-                            </p>
-                        </>
-                    )} */}
                 </div>
             </div>
         </div>

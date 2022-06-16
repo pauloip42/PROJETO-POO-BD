@@ -10,7 +10,7 @@ export async function postProject(project){
         });
 }
 
-export async function deleteProject(id, project){
+export async function deleteProject(id){
     const requestOptions = {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -18,7 +18,6 @@ export async function deleteProject(id, project){
     };
     await fetch(`http://localhost:8080/projetos/${id}`, requestOptions)
         .then((response) => {
-            console.log(response.json());
             return response.json();
         });
 }

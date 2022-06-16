@@ -53,23 +53,6 @@ export default function Modal({conteudo, close}){
                     <FiX size={23} color="#FFF"/>
                     Excluir Projeto
                     </button>
-
-                    {/* <div className='row'>
-                        <span>
-                            Status: <i 
-                            style={{color: '#FFF', backgroundColor: conteudo.status === 'Atendido' ? '#5cb85c' : '#999'}}>
-                            {conteudo.status}</i>
-                        </span>
-                    </div>
-
-                    {conteudo.complemento !== '' && (
-                        <>
-                            <h3>Complemento</h3>
-                            <p>
-                                {conteudo.complemento}
-                            </p>
-                        </>
-                    )} */}
                 </div>
             </div>
         </div>

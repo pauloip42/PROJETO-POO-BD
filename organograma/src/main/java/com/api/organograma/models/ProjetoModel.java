@@ -1,18 +1,12 @@
 package com.api.organograma.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "PROJETO")
 public class ProjetoModel implements Serializable{
@@ -31,7 +25,6 @@ public class ProjetoModel implements Serializable{
     @Column(nullable = false)
     private Double preco;
 
-    @JsonIgnore
     @OneToOne
     @JoinColumn(name="cliente_id", referencedColumnName = "id")
     private ClienteModel cliente;
@@ -45,5 +38,53 @@ public class ProjetoModel implements Serializable{
 
     public void addMembro(MembroModel membro) {
         this.membro.add(membro);
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public ClienteModel getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
+    }
+
+    public Set<MembroModel> getMembro() {
+        return membro;
+    }
+
+    public void setMembro(Set<MembroModel> membro) {
+        this.membro = membro;
     }
 }

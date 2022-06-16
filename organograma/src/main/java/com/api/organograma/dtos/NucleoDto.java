@@ -1,23 +1,38 @@
 package com.api.organograma.dtos;
-import lombok.Getter;
-import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Getter
-@Setter
 public class NucleoDto {
 
-    @NotBlank
     private String nome;
 
-    @NotBlank
     @Size(max=5)
     private String sigla;
 
-    @NotBlank
     @Size(max=30)
     private String area;
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
 }

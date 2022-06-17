@@ -105,7 +105,7 @@ public class ProjetoController {
         projetoModel.setStatus(status);
         projetoService.saveUpdated(projetoModel);
 
-        return ResponseEntity.status(HttpStatus.OK).body("Projeto Atualizado\n" + projetoService.saveUpdated(projetoModel));
+        return ResponseEntity.status(HttpStatus.OK).body("Projeto Atualizado");
     }
 
     @DeleteMapping("{id}") // DELETE Project

@@ -5,6 +5,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema organograma
 -- -----------------------------------------------------
+
 CREATE SCHEMA IF NOT EXISTS `organograma` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 USE `organograma` ;
 
@@ -25,9 +26,10 @@ CREATE TABLE IF NOT EXISTS `organograma`.`cliente` (
   UNIQUE INDEX `UK_i94fmdo5ix2yqqi0l3mdruvrb` (`responsavel` ASC) VISIBLE,
   UNIQUE INDEX `UK_cjamibneobl928lfs71yos48r` (`telefone` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 103
+AUTO_INCREMENT = 106
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
 
 -- -----------------------------------------------------
 -- Table `organograma`.`nucleo`
@@ -65,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `organograma`.`membro` (
     FOREIGN KEY (`nucleo_id`)
     REFERENCES `organograma`.`nucleo` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 106
+AUTO_INCREMENT = 109
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -86,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `organograma`.`projeto` (
     FOREIGN KEY (`cliente_id`)
     REFERENCES `organograma`.`cliente` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 103
+AUTO_INCREMENT = 104
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

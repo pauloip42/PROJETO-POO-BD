@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `organograma`.`projeto` (
     FOREIGN KEY (`cliente_id`)
     REFERENCES `organograma`.`cliente` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 104
+AUTO_INCREMENT = 120
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
